@@ -28,11 +28,18 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 
 ```yml
 - name: Setup Plone 6.0.0a1 with Python 3.8
-  id: setup
   uses: plone/setup-plone@v1.0.0
   with:
     python-version: '3.8'
     plone-version: '6.0.0a1'
+
+- name: Install addon package, in editable mode, with pip
+  run: |
+    pip install -e ".[test]" --use-deprecated legacy-resolver
+
+- name: Run tests (located inside src)
+  run: |
+    zope-testrunner --auto-color --auto-progress --test-path src/
 ```
 
 ## Changes
