@@ -1,0 +1,55 @@
+---
+name: 'Setup Plone'
+description: 'Set up a specific version of Plone and Python.'
+author: 'Plone Foundation'
+inputs:
+  python-version:
+    description: "Version range or exact version of a Python version to use, using SemVer's version range syntax."
+    default: '3.8'
+  plone-version:
+    description: "Plone version to be used."
+    default: '5.2'
+  package-path:
+    description: "Path to package setup.py file. i.e.: '.'"
+    default: '.'
+  package-extras:
+    description: "Package extras to be installed, if any. i.e. test"
+    default: 'test'
+branding:
+  icon: 'code'
+  color: 'blue'
+runs:
+  using: "composite"
+  steps:
+    # python setup
+    - name: Set up Python ${{ inputs.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    # python cache
+    - name: Setup cache
+      id: cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ inputs.python-version }}-${{ inputs.plone-version }}
+        restore-keys: |
+          ${{ runner.os }}-pip-${{ inputs.python-version }}-
+
+    # python install
+    - name: Create virtual environment
+      run: |
+        python -m venv .
+        ./bin/pip install -U pip setuptools wheel
+
+    # Plone install
+    - name: Install Plone ${{ inputs.plone-version }} and plone.app.testing
+      run: |
+        ./bin/pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt  --use-deprecated legacy-resolver
+
+    # Package installation
+    - name: Install local package
+      run: |
+        ./bin/pip install "${{ inputs.package-path }}[${{ inputs.package-extras }}]" --use-deprecated legacy-resolver
