@@ -40,16 +40,19 @@ runs:
 
     # python install
     - name: Create virtual environment
+      shell: bash
       run: |
         python -m venv .
         ./bin/pip install -U pip setuptools wheel
 
     # Plone install
     - name: Install Plone ${{ inputs.plone-version }} and plone.app.testing
+      shell: bash
       run: |
         ./bin/pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt  --use-deprecated legacy-resolver
 
     # Package installation
     - name: Install local package
+      shell: bash
       run: |
         ./bin/pip install "${{ inputs.package-path }}[${{ inputs.package-extras }}]" --use-deprecated legacy-resolver
