@@ -55,4 +55,4 @@ runs:
     - name: Install local package
       shell: bash
       run: |
-        ./bin/pip install "${{ inputs.package-path }}[${{ inputs.package-extras }}]" --use-deprecated legacy-resolver
+        ./bin/pip install -e "${{ inputs.package-path }}[${{ inputs.package-extras }}]" --use-deprecated legacy-resolver
