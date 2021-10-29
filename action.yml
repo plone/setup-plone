@@ -9,12 +9,6 @@ inputs:
   plone-version:
     description: "Plone version to be used."
     default: '5.2'
-  package-path:
-    description: "Path to package setup.py file. i.e.: '.'"
-    default: '.'
-  package-extras:
-    description: "Package extras to be installed, if any. i.e. test"
-    default: 'test'
 branding:
   icon: 'code'
   color: 'blue'
@@ -39,20 +33,13 @@ runs:
           ${{ runner.os }}-pip-${{ inputs.python-version }}-
 
     # python install
-    - name: Create virtual environment
+    - name: Install updated versions of pip, setuptools and wheel
       shell: bash
       run: |
-        python -m venv .
-        ./bin/pip install -U pip setuptools wheel
+        pip install -U pip setuptools wheel
 
     # Plone install
     - name: Install Plone ${{ inputs.plone-version }} and plone.app.testing
       shell: bash
       run: |
-        ./bin/pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt  --use-deprecated legacy-resolver
-
-    # Package installation
-    - name: Install local package
-      shell: bash
-      run: |
-        ./bin/pip install -e "${{ inputs.package-path }}[${{ inputs.package-extras }}]" --use-deprecated legacy-resolver
+        pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt  --use-deprecated legacy-resolver

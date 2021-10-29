@@ -32,9 +32,7 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
   uses: plone/setup-plone@v1.0.0
   with:
     python-version: '3.8'
-    python-version: '6.0.0a1'
-    package-path: '.'
-    package-extras: 'test'
+    plone-version: '6.0.0a1'
 ```
 
 ## Changes
