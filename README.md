@@ -14,11 +14,21 @@ This action set up [Plone](https://plone.org "Plone CMS") and [Python](https://p
 
 ### `python-version`
 
-**Required** Python version to be used. Default `3.8`.
+**Required** Python version to be used.
+
+Default value: `3.8`.
 
 ### `plone-version`
 
-**Required** Plone version to be used. Default `5.2`.
+**Required** Plone version to be used.
+
+Default value: `5.2`.
+
+### `additional-eggs`
+
+Additional eggs to be installed. This is useful to pin versions of packages listed on contraints.txt. i.e.: `plone.restapi>=8.13.0`.
+
+Default value: ``.
 
 ## Usage
 
@@ -44,7 +54,11 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 
 ## Changes
 
-### v1.0.0 (Unreleased)
+### v1.1.0 (Unreleased)
+
+* Add support for `additional-eggs` option [ericof]
+
+### v1.0.0 (2021-10-29)
 
 * Initial release of plone/setup-plone [ericof]
 
@@ -58,7 +72,7 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 [![plone on twitter][twitter badge]][twitter]
 
 [twitter badge]: https://img.shields.io/twitter/follow/plone.svg?style=social
-[twitter]: https://twitter.com/intent/follow?screen_name=plone 
+[twitter]: https://twitter.com/intent/follow?screen_name=plone
 [marketplace badge]: https://img.shields.io/badge/GitHub-Marketplace-lightblue.svg
 [marketplace]: https://github.com/marketplace/actions/setup-plone
 [LICENSE badge]: https://img.shields.io/github/license/plone/setup-plone.svg
