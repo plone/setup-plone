@@ -54,7 +54,7 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 
 ## Changes
 
-### v1.1.0 (Unreleased)
+### v1.1.0 (2021-11-10)
 
 * Add support for `additional-eggs` option [ericof]
 
