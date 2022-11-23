@@ -24,6 +24,12 @@ Default value: `3.8`.
 
 Default value: `5.2`.
 
+### `setuptools-version`
+
+**Required** Setupttols version to be used.
+
+Default value: `65.5.0`.
+
 ### `additional-eggs`
 
 Additional eggs to be installed. This is useful to pin versions of packages listed on contraints.txt. i.e.: `plone.restapi>=8.13.0`.
@@ -53,6 +59,10 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 ```
 
 ## Changes
+
+### v1.2.0 (2022-11-23)
+
+* Add support for `setuptools-version` option [ericof]
 
 ### v1.1.0 (2021-11-10)
 

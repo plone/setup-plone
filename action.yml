@@ -9,6 +9,9 @@ inputs:
   plone-version:
     description: "Plone version to be used."
     default: '5.2'
+  setuptools-version:
+    description: "Setuptools version to be used."
+    default: '65.5.0'
   additional-eggs:
     description: "Eggs/versions to be installed. i.e. `plone.restapi>=8.13.0`"
     default: ''
@@ -39,7 +42,7 @@ runs:
     - name: Install updated versions of pip, setuptools and wheel
       shell: bash
       run: |
-        pip install -U pip setuptools wheel
+        pip install -U pip wheel "setuptools==${{ inputs.setuptools-version }}"
 
     # Plone install
     - name: Install Plone ${{ inputs.plone-version }} and plone.app.testing
