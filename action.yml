@@ -23,20 +23,10 @@ runs:
   steps:
     # python setup
     - name: Set up Python ${{ inputs.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ inputs.python-version }}
-
-    # python cache
-    - name: Setup cache
-      id: cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ inputs.python-version }}-${{ inputs.plone-version }}
-        restore-keys: |
-          ${{ runner.os }}-pip-${{ inputs.python-version }}-
+        cache: "pip" # caching pip dependencies
 
     # python install
     - name: Install updated versions of pip, setuptools and wheel
@@ -48,11 +38,11 @@ runs:
     - name: Install Plone ${{ inputs.plone-version }} and plone.app.testing
       shell: bash
       run: |
-        pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt --use-deprecated legacy-resolver
+        pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt
 
     # Additional eggs
     - name: Install additional eggs
       shell: bash
       if: ${{ inputs.additional-eggs }}
       run: |
-        pip install "${{ inputs.additional-eggs }}" --use-deprecated legacy-resolver
+        pip install "${{ inputs.additional-eggs }}"
