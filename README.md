@@ -84,7 +84,7 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 [twitter badge]: https://img.shields.io/twitter/follow/plone.svg?style=social
 [twitter]: https://twitter.com/intent/follow?screen_name=plone
 [marketplace badge]: https://img.shields.io/badge/GitHub-Marketplace-lightblue.svg
-[marketplace]: https://github.com/marketplace/actions/setup-plone
+[marketplace]: https://github.com/marketplace/actions/setup-plone-python
 [LICENSE badge]: https://img.shields.io/github/license/plone/setup-plone.svg
 [LICENSE]: https://github.com/plone/setup-plone/blob/master/LICENSE
 [release badge]: https://img.shields.io/github/release/plone/setup-plone.svg
