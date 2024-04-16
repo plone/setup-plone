@@ -66,6 +66,17 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 
 ## Changes
 
+### v2.1.0 (unreleased)
+
+* Use `setuptools-version` from chosen `plone-version` if not explicitly specified.  [maurits]
+* Mark `plone-version` and `python-version` as really required, `setuptools-version` and the others not.  [maurits]
+* Rename `additional-eggs` to `additional-packages`.  Keep the previous spelling as well and use it, but mark it as deprecated.  [maurits]
+* Update `actions/setup-python` to v5.  [maurits]
+
+### v2.0.0 (2022-12-05)
+
+* Update `actions/setup-python` to v4.  [ericof]
+
 ### v1.2.0 (2022-11-23)
 
 * Add support for `setuptools-version` option [ericof]
