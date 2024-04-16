@@ -49,15 +49,15 @@ Default value: ``.
 Add the a workflow file in your repository: `.github/workflows/test.yml`.
 
 ```yml
-- name: Setup Plone 6.0.0a1 with Python 3.8
-  uses: plone/setup-plone@v1.0.0
+- name: Setup Plone 6.0.10.1 with Python 3.11
+  uses: plone/setup-plone@v2.0.0
   with:
-    python-version: '3.8'
-    plone-version: '6.0.0a1'
+    python-version: '3.11'
+    plone-version: '6.0.10.1'
 
 - name: Install addon package, in editable mode, with pip
   run: |
-    pip install -e ".[test]" --use-deprecated legacy-resolver
+    pip install -e ".[test]"
 
 - name: Run tests (located inside src)
   run: |
