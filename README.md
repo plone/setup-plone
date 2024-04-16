@@ -26,7 +26,7 @@ Default value: `5.2`.
 
 ### `setuptools-version`
 
-**Required** Setupttols version to be used.
+Setuptools version to be used.
 
 Default value: `65.5.0`.
 
