@@ -26,13 +26,19 @@ Default value: `5.2`.
 
 ### `setuptools-version`
 
-**Required** Setupttols version to be used.
+Setuptools version to be used.  If not specified, we use the version from the constraints file of the chosen Plone version.
 
-Default value: `65.5.0`.
+Default value: ``.
+
+### `additional-packages`
+
+Additional packages to be installed. This is useful to pin versions of packages listed on contraints.txt. i.e.: `plone.restapi>=8.13.0`.
+
+Default value: ``.
 
 ### `additional-eggs`
 
-Additional eggs to be installed. This is useful to pin versions of packages listed on contraints.txt. i.e.: `plone.restapi>=8.13.0`.
+Deprecated alias for `additional-packages`.  Still supported for now.
 
 Default value: ``.
 
@@ -43,15 +49,15 @@ Default value: ``.
 Add the a workflow file in your repository: `.github/workflows/test.yml`.
 
 ```yml
-- name: Setup Plone 6.0.0a1 with Python 3.8
-  uses: plone/setup-plone@v1.0.0
+- name: Setup Plone 6.0.10.1 with Python 3.11
+  uses: plone/setup-plone@v2.0.0
   with:
-    python-version: '3.8'
-    plone-version: '6.0.0a1'
+    python-version: '3.11'
+    plone-version: '6.0.10.1'
 
 - name: Install addon package, in editable mode, with pip
   run: |
-    pip install -e ".[test]" --use-deprecated legacy-resolver
+    pip install -e ".[test]"
 
 - name: Run tests (located inside src)
   run: |
@@ -59,6 +65,17 @@ Add the a workflow file in your repository: `.github/workflows/test.yml`.
 ```
 
 ## Changes
+
+### v2.1.0 (unreleased)
+
+* Use `setuptools-version` from chosen `plone-version` if not explicitly specified.  [maurits]
+* Mark `plone-version` and `python-version` as really required, `setuptools-version` and the others not.  [maurits]
+* Rename `additional-eggs` to `additional-packages`.  Keep the previous spelling as well and use it, but mark it as deprecated.  [maurits]
+* Update `actions/setup-python` to v5.  [maurits]
+
+### v2.0.0 (2022-12-05)
+
+* Update `actions/setup-python` to v4.  [ericof]
 
 ### v1.2.0 (2022-11-23)
 
