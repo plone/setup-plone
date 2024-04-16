@@ -26,9 +26,9 @@ Default value: `5.2`.
 
 ### `setuptools-version`
 
-Setuptools version to be used.
+Setuptools version to be used.  If not specified, we use the version from the constraints file of the chosen Plone version.
 
-Default value: `65.5.0`.
+Default value: ``.
 
 ### `additional-packages`
 

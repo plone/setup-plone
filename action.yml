@@ -12,8 +12,8 @@ inputs:
     default: '5.2'
     required: true
   setuptools-version:
-    description: "Setuptools version to be used."
-    default: '65.5.0'
+    description: "Setuptools version to be used. If not specified, we use the version from the constraints file of the chosen plone-version."
+    default: ''
     required: false
   additional-packages:
     description: "Package versions to be installed. i.e. `plone.restapi>=8.13.0`"
@@ -40,7 +40,14 @@ runs:
     - name: Install updated versions of pip, setuptools and wheel
       shell: bash
       run: |
-        pip install -U pip wheel "setuptools==${{ inputs.setuptools-version }}"
+        pip install -U pip wheel setuptools -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt
+
+    # setuptools install
+    - name: Install specific version of setuptools
+      shell: bash
+      if: ${{ inputs.setuptools-version }}
+      run: |
+        pip install -U "setuptools==${{ inputs.setuptools-version }}"
 
     # Plone install
     - name: Install Plone ${{ inputs.plone-version }} and plone.app.testing
