@@ -30,9 +30,15 @@ Default value: `5.2`.
 
 Default value: `65.5.0`.
 
+### `additional-packages`
+
+Additional packages to be installed. This is useful to pin versions of packages listed on contraints.txt. i.e.: `plone.restapi>=8.13.0`.
+
+Default value: ``.
+
 ### `additional-eggs`
 
-Additional eggs to be installed. This is useful to pin versions of packages listed on contraints.txt. i.e.: `plone.restapi>=8.13.0`.
+Deprecated alias for `additional-packages`.  Still supported for now.
 
 Default value: ``.
 

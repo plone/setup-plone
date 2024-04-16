@@ -12,8 +12,11 @@ inputs:
   setuptools-version:
     description: "Setuptools version to be used."
     default: '65.5.0'
+  additional-packages:
+    description: "Package versions to be installed. i.e. `plone.restapi>=8.13.0`"
+    default: ''
   additional-eggs:
-    description: "Eggs/versions to be installed. i.e. `plone.restapi>=8.13.0`"
+    description: "Deprecated, use additional-packages instead."
     default: ''
 branding:
   icon: 'code'
@@ -40,9 +43,17 @@ runs:
       run: |
         pip install Plone plone.app.testing -c https://dist.plone.org/release/${{ inputs.plone-version }}/constraints.txt
 
-    # Additional eggs
-    - name: Install additional eggs
+    # Additional packages
+    - name: Install additional packages
+      shell: bash
+      if: ${{ inputs.additional-packages }}
+      run: |
+        pip install "${{ inputs.additional-packages }}"
+
+    # Additional packages
+    - name: "Deprecated: Install additional eggs"
       shell: bash
       if: ${{ inputs.additional-eggs }}
       run: |
+        echo "additional-eggs is deprecated. Please rename to additional-packages, which does the same."
         pip install "${{ inputs.additional-eggs }}"
