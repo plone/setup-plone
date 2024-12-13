@@ -16,13 +16,13 @@ This action set up [Plone](https://plone.org "Plone CMS") and [Python](https://p
 
 **Required** Python version to be used.
 
-Default value: `3.8`.
+Default value: `3.11`.
 
 ### `plone-version`
 
 **Required** Plone version to be used.
 
-Default value: `5.2`.
+Default value: `6.0`.
 
 ### `setuptools-version`
 

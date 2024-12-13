@@ -5,11 +5,11 @@ author: 'Plone Foundation'
 inputs:
   python-version:
     description: "Version range or exact version of a Python version to use, using SemVer's version range syntax."
-    default: '3.8'
+    default: '3.11'
     required: true
   plone-version:
     description: "Plone version to be used."
-    default: '5.2'
+    default: '6.0'
     required: true
   setuptools-version:
     description: "Setuptools version to be used. If not specified, we use the version from the constraints file of the chosen plone-version."
